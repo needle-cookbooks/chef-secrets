@@ -10,6 +10,9 @@ module Secrets
         rescue => e
           retries += 1
           Chef::Log.fatal("Failed to load encrypted secrets:\n#{e.inspect}\nretrying (1/5)")
+          if retries >= 5
+            raise
+          end
         end
       end
     end
