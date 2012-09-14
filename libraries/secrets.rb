@@ -5,7 +5,7 @@ module Secrets
       while retries <= 5
         begin
           data_bag_key = Chef::EncryptedDataBagItem.load_secret(key)
-          Chef::EncryptedDataBagItem.load('secrets', env, data_bag_key)
+          return Chef::EncryptedDataBagItem.load('secrets', env, data_bag_key)
           break
         rescue => e
           retries += 1
