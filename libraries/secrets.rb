@@ -1,6 +1,6 @@
 module Secrets
   class << self
-    def load(key,env)
+    def load(key,env='_default')
       if Chef::Config.solo
         return data_bag_item('secrets','solo')
       else
