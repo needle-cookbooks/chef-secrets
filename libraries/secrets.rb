@@ -2,7 +2,7 @@ module Secrets
   class << self
     def load(key,env='_default')
       if Chef::Config.solo
-        return data_bag_item('secrets','solo')
+        return Chef::DataBagItem.load('secrets','solo')
       else
         retries = 0
         while retries <= 5
