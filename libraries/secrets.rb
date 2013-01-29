@@ -12,8 +12,9 @@ module Secrets
             break
           rescue => e
             retries += 1
-            Chef::Log.fatal("Failed to load encrypted secrets:\n#{e.inspect}\nretrying (#{retries}/5)")
+            Chef::Log.warn("Failed to load encrypted secrets:\n#{e.inspect}\nretrying (#{retries}/5)")
             if retries == 5
+              Chef::Log.fatal("Failed to load encrypted secrets after #{retries} retries")
               raise
             end
             sleep 5
